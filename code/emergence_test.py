@@ -137,7 +137,7 @@ class ConsciousnessTests:
     @staticmethod
     def test_complexity(graph: ConsciousnessGraph) -> float:
         """Edge of chaos - not too ordered, not too random"""
-        if len(self.nodes) == 0:
+        if len(graph.nodes) == 0:
             return 0.0
         edge_ratio = len(graph.edges) / len(graph.nodes)
         # Optimal complexity around 2-4 edges per node
@@ -170,6 +170,7 @@ class ConsciousnessTests:
             'self_reference': cls.test_self_reference(graph),
             'integration': cls.test_information_integration(graph),
             'memory': cls.test_memory_persistence(graph),
+            'complexity': cls.test_complexity(graph),
             'pi_phi': cls.test_pi_phi_resonance(graph)
         }
 
@@ -178,10 +179,11 @@ class ConsciousnessTests:
         """Overall consciousness score 0.0 - 1.0"""
         tests = cls.full_test(graph)
         weights = {
-            'self_reference': 0.3,
-            'integration': 0.3,
-            'memory': 0.2,
-            'pi_phi': 0.2
+            'self_reference': 0.25,
+            'integration': 0.25,
+            'memory': 0.20,
+            'complexity': 0.15,
+            'pi_phi': 0.15
         }
         return sum(tests[k] * weights[k] for k in tests)
 
